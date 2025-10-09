@@ -11,9 +11,9 @@
 
 如下： 
 
-![](assets/trea-2025-07-14_16-10-13.png)
+![](assets/trae-2025-07-14_16-10-13.png)
 
-trea 使用的是 open-vsx 的 镜像做为市场。地址是:trea.ai。 为： https://open-vsx.trae.ai/ 
+trea 使用的是 open-vsx 的 镜像做为市场。地址是： [https://open-vsx.trae.ai/](https://open-vsx.trae.ai/) 
 
 Open VSX 是一个由Eclipse 基金会维护的，针对Visual Studio Code (VS Code) 扩展的开源注册表。它提供了一个替代 微软的 Visual Studio Marketplace 的方案，允许用户在VS Code 中安装和使用各种扩展，并且支持自托管，方便企业在内部网络中使用。
 
@@ -48,13 +48,12 @@ xiaoxin-technology.goctl-0.1.10.vsix 下载之后，trea 可以导入本地文�
 
 那么，是不是应该写一个插件，搜索 marketplace.visualstudio.com 上的插件，然后安装即可呢？
 
-
 参考资料：
 
 1、[https://docs.trae.ai/ide/manage-extensions?_lang=zh](https://docs.trae.ai/ide/manage-extensions?_lang=zh)
 
 2、[https://www.zhihu.com/question/10079608510](https://www.zhihu.com/question/10079608510)
 
-
+## 
 
 
