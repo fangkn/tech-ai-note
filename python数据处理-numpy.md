@@ -281,14 +281,19 @@ rng = np.random.default_rng(seed=42)
 arr = rng.uniform(0, 1, (3, 4))
 print(arr)
 
-# 改变形状
-print("改变形状:", arr.reshape((4, 3)))
-
-# 转置
-print("转置:", arr.T)
+# 将多维 array 打平
+print("展平:", arr.ravel())
 
 # 展平
 print("展平:", arr.flatten())
+
+# 改变形状
+#print("改变形状:", arr.reshape((4, 3)))
+
+# 转置
+#print("转置:", arr.T)
+
+
 ```
 
 
