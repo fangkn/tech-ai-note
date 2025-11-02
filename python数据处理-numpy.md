@@ -366,14 +366,176 @@ print("转置:", arr.T)
 ```
 ## 分解和组合
 
-内容大致包括以下小节：
+分解和组合是 nympy 比较重点的内容，大致包括以下小节
 
 - 切片和索引
 - 拼接
 - 重复
 - 分拆
 
+**切片和索引**
 
+切片和索引是通过对已有 array 进行操作而得到想要的  ”部分“  元素的行为过程。其核心动作可以概括为：按维度根据 `start:stop:step` 操作 array。
+
+**拼接**
+
+需要对已有的几个 array 进行拼接以形成一个大的 array。
+
+np.concatenate 和 np.stack，前者是拼接，后者是堆叠（会增加一个维度），都可以指定维度.
+
+
+**重复** 
+重复其实是另一种拼接方式，它也可以指定要重复的维度. 
+
+```python 
+# 在 axis=0（沿着列）上重复 2 次
+np.repeat(arr, 2, axis=0)
+
+# 在 axis=1（沿着行）上重复 3 次
+np.repeat(arr, 3, axis=1)
+```
+
+**分拆**
+
+有拼接堆叠自然就有拆分，注意这不是切片和索引，就是将 array 拆成想要的几份。np.split. 
+
+
+```python
+# 默认切分列（axis=0），切成 3 份
+np.split(arr, 3)
+# （axis=1）切分行
+np.split(arr, 2, axis=1)
+```
+
+** 筛选和过滤 **
+
+主要包括以下内容：
+
+- 条件筛选
+- 提取（按条件）
+- 抽样（按分布）
+- 最大最小 index（特殊值）
+
+```python 
+# 条件筛选，可以直接在整个 array 上使用条件
+arr > 50
+
+# 返回满足条件的索引，因为是两个维度，所以会返回两组结果
+np.where(arr > 50)
+```
+**提取**
+
+```python 
+# 提取指定条件的值
+np.extract(arr > 50, arr)
+# 唯一值，是另一种形式的提取
+np.unique(arr)
+```
+
+**抽样**
+
+我们在跑模型时常常需要使用部分数据对整个过程快速验证，您当然可以使用 np.random 生成模拟数据。但有真实数据时，从真实数据中随机抽样会比较好。
+
+```python 
+rng = np.random.default_rng(42)
+# 第一个参数是要抽样的集合，如果是一个整数，则表示从 0 到该值
+# 第二个参数是样本大小
+# 第三个参数表示结果是否可以重复
+# 第四个参数表示出现的概率，长度和第一个参数一样
+
+# 由于（0 1 2 3）中 2 和 3 的概率比较高，自然就选择了 2 和 3
+rng.choice(4, 2, replace=False, p=[0.1, 0.2, 0.3, 0.4])
+```
+## 矩阵和运算
+
+阵和相关的运算，主要包括：
+
+- 算术（四则运算及其他基础算术）
+- 广播
+- 矩阵相关
+
+**算术**
+
+所有的算术函数均可直接运用于 array。
+
+```python 
+
+# +-*/ 四则运算，就跟两个数字计算一样
+arr * 2
+```
+**广播**
+
+```python
+
+# array([[ 9, 77, 65, 44],
+#        [43, 86,  9, 70],
+#        [20, 10, 53, 97]])
+# 广播，后面的被当做 1 行 4 列
+
+a + [1,2,3,4]
+
+# array([[ 10,  79,  68,  48],
+#        [ 44,  88,  12,  74],
+#        [ 21,  12,  56, 101]])
+
+```
+
+## 矩阵
+
+线性代数中矩阵的处理几个矩阵相关常用的 API
+
+array 乘法 arr.dot
+
+矩阵乘法 matmul. 与 dot 的主要区别是：matmul 矩阵（好像元素一样）堆叠在一起广播. 
+
+```python 
+# 点积
+np.vdot(a, a)
+
+# 内积
+np.inner(a, a)
+
+
+# 行列式
+np.linalg.det(c)
+
+# 逆矩阵（方阵）
+np.linalg.inv(c)
+```
+
+```sh 
+内容小结
+本教程共六个部分，我们给您把最重要的（3个⭐以上的）一些 API 罗列出来供您回忆，加深印象：
+
+- 创建和生成
+ - np.linspace(start, end, nums)
+ - rng.integers/uniform(low, high, size)
+ - rng.normal(loc, scale, size)
+- 统计和属性
+ - arr.shape
+ - arr.sum/max/min(axis, keepdims)
+ - np.average(arr, axis)
+- 形状和转换
+ - arr.reshpae/np.reshape
+ - np.expand_dims(arr, axis)
+ - np.squeeze(arr axis)
+ - np.transpose(arr, axis)
+ - arr.T
+- 分解和组合
+ - arr[start:stop:step, ...]
+ -  np.concatenate((arr1, arr2), axis)
+ - np.stack((arr1, arr2), axis)
+ - np.repeat(arr, repeat_num, axis)
+ - np.split(arr, part_num, axis)
+- 筛选和过滤
+ - np.where(condition, arr, replaced_val)
+ - rng.choice(a, size, replace=False, p=probs_size_equals_a)
+ - rng.argmax/argmin/argsort(arr, axis)
+矩阵和计算
+ - +-*/
+ - np.dot(a, b) == a.dot(b)
+ - np.matmul(a, b) == a @ b
+```
 
 
 
