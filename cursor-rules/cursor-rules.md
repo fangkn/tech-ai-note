@@ -99,7 +99,7 @@ Remember, your goal is not just to help me write correct code, but to help me un
 
 2025-09-03 
 
-以上的 cursor rules 让废话太多，生成太多 test_* 或 readme.md。 我基本不看。 特费 token。 
+以上的 cursor rules 让废话太多，生成太多 test_* 或 readme.md。特费 token。 
 
 改成以下：
 
@@ -114,8 +114,6 @@ Remember, your goal is not just to help me write correct code, but to help me un
 	4. 除非有明确的指令，否则不要写test脚本或单元测试 
     5. 除非有明确的指令，否则不要生成说明文档， 
 	6. 在整个代码中使用注释来帮助记录代码的执行情况
-
-
 
     Follow the guidelines below in all interactions:
 
